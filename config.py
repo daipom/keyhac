@@ -31,7 +31,13 @@ def configure(keymap):
     keymap.setTheme("black")
 
     keymap.defineModifier(124, "User0")
+    keymap.defineModifier(29, "User0")
+    # keymap.defineModifier("Space", "User0")
     keymap_global = keymap.defineWindowKeymap()
+    # keymap_global["O-29"] = 29  # ワンショットモディファイア
+    # keymap_global["O-Space"] = "Space"  # ワンショットモディファイア
+    # keymap_global["29"] = "Space"  # Space救出
+    # keymap_global["LC-29"] = "LC-Space"  # Space救出
     keymap_global["BackSlash"] = "LShift-BackSlash"
     keymap_global["Insert"] = "Insert", "Insert"
     keymap_global["LU0-X"] = "Back"
@@ -74,14 +80,18 @@ def configure(keymap):
     keymap_global["LU0-U"] = "LC-Z"
     keymap_global["LU0-Caret"] = "Home"
     keymap_global["LU0-4"] = "End"
+    keymap_global["LU0-6"] = "Home"
     keymap_global["LU0-LShift-Caret"] = "LShift-Home"
     keymap_global["LU0-LShift-4"] = "LShift-End"
     keymap_global["LU0-O"] = "End", "Enter"
+    keymap_global["LU0-Y"] = "LC-C"
+    keymap_global["LU0-P"] = "LC-V"
     keymap_chrome = keymap.defineWindowKeymap(exe_name="chrome.exe", class_name="Chrome_WidgetWin_1")
     keymap_chrome["LC-Tab"] = "LC-Y"
     # keymap_sublime = keymap.defineWindowKeymap(exe_name="sublime_text.exe", class_name="PX_WINDOW_CLASS")
     # keymap_sublime["LU0-O"] = "LC-Return"
-    # keymap_vs = keymap.defineWindowKeymap(exe_name="devenv.exe")
+    keymap_vs = keymap.defineWindowKeymap(exe_name="devenv.exe")
+    keymap_vs["LU0-S"] = "LC-W"  # Expand selection
     # keymap_vs["LU0-O"] = "LC-Shift-Return"
     # Clipboard history related
     keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # Open the clipboard history list
@@ -358,7 +368,8 @@ def configure(keymap):
         def get_this_friday(fmt="%Y/%m/%d"):
             today = datetime.datetime.now()
             this_friday = today - datetime.timedelta(days=today.weekday()) + datetime.timedelta(days=4)
-            return this_friday.strftime(fmt)
+            date_items = this_friday.strftime(fmt).split("/")
+            return f"{date_items[0]}年{date_items[1]}月{date_items[2]}日"
 
         def teirei_mail_title(name="福田"):
             def _teirei_mail_title():
