@@ -49,10 +49,10 @@ def configure(keymap):
 
     keymap_global["LU0-W"] = "LC-Right"
     keymap_global["LU0-B"] = "LC-Left"
-    keymap_global["LU0-E"] = "LC-Right"
+    # keymap_global["LU0-E"] = "LC-Right"
     keymap_global["LU0-LShift-W"] = "LC-LShift-Right"
     keymap_global["LU0-LShift-B"] = "LC-LShift-Left"
-    keymap_global["LU0-LShift-E"] = "LC-LShift-Right"
+    # keymap_global["LU0-LShift-E"] = "LC-LShift-Right"
 
     keymap_global["LU0-D"] = keymap.defineMultiStrokeKeymap("LU0-D")
     keymap_global["LU0-D"]["LU0-D"] = "End", "LShift-Home", "LShift-Home", "Back", "Delete"
@@ -95,6 +95,8 @@ def configure(keymap):
     # keymap_vs["LU0-O"] = "LC-Shift-Return"
     # Clipboard history related
     keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # Open the clipboard history list
+    keymap_global[ "LU0-E"   ] = keymap.command_ClipboardList     # Open the clipboard history list
+    keymap_global[ "LU0-Q"   ] = "Esc"
     # keymap_global[ "C-S-X"   ] = keymap.command_ClipboardRotate   # Move the most recent history to tail
     # keymap_global[ "C-S-A-X" ] = keymap.command_ClipboardRemove   # Remove the most recent history
     keymap.quote_mark = "> "
@@ -505,6 +507,11 @@ def configure(keymap):
             # Open by the text editor
             keymap.editTextFile(fullpath)
 
+        mark_items = [
+            (";", ";"),
+            (",", ","),
+        ]
+
         # Menu item list
         other_items = [
             ( "Reload config.py",           keymap.command_ReloadConfig ),
@@ -523,6 +530,7 @@ def configure(keymap):
 
         # Clipboard history list extensions
         keymap.cblisters += [
+            ("Mark items", cblister_FixedPhrase(mark_items)),
             ( "Fixed phrase", cblister_FixedPhrase(fixed_items) ),
             ( "Key Macro", cblister_FixedPhrase(key_macros)),
             ( "Date-time", cblister_FixedPhrase(datetime_items) ),
