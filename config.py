@@ -93,6 +93,11 @@ def configure(keymap):
     keymap_vs = keymap.defineWindowKeymap(exe_name="devenv.exe")
     keymap_vs["LU0-S"] = "LC-W"  # Expand selection
     # keymap_vs["LU0-O"] = "LC-Shift-Return"
+
+    keymap_vscode = keymap.defineWindowKeymap(exe_name="Code.exe")
+    keymap_vscode["LU0-S"] = "LShift-LAlt-Right"
+    keymap_vscode["LU0-LShift-S"] = "LShift-LAlt-Left"
+
     # Clipboard history related
     keymap_global[ "C-S-Z"   ] = keymap.command_ClipboardList     # Open the clipboard history list
     keymap_global[ "LU0-E"   ] = keymap.command_ClipboardList     # Open the clipboard history list
